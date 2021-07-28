@@ -11,7 +11,7 @@ import tensorflow as tf
 # men women 데이터로 모델링 구성하기
 # 문제 1. 데이터 용량이 큼.
 
-# '''
+'''
 train_datagen = ImageDataGenerator(
     rescale=1./120,
   )
@@ -39,7 +39,7 @@ print('xy : ',xy)
 np.save('./_save/_npy/k59_5_x.npy', arr=xy[0][0])
 np.save('./_save/_npy/k59_5_x_predict.npy', arr=xy[1][0])
 np.save('./_save/_npy/k59_5_y.npy', arr=xy[0][1])
-# '''
+'''
 
 # 학습
 # '''
@@ -73,7 +73,7 @@ learning_start = time.time()
 
 es = EarlyStopping(monitor='val_acc', mode='max', patience=15)
 # model.fit(x_train, y_train, epochs=50, validation_split=0.05, batch_size=8, callbacks=[es])
-model.fit(x_train, y_train, epochs=50, validation_split=0.05, batch_size=126, callbacks=[es], validation_steps=4)
+model.fit(x_train, y_train, epochs=50, validation_split=0.05, batch_size=126, callbacks=[es])
 learning_end = (time.time() - learning_start)/60
 print('학습 걸린 시간(분) : ', learning_end)
 
@@ -82,7 +82,11 @@ print('loss : ', result[0])
 print('acc : ', result[1])
 print('asd', x_predict.shape)
 y_predict = model.predict(x_predict)
-print('y_predict :', y_predict)
+y_value = np.around(y_predict)
+print('y1', y_predict)
+print('y1', y_value)
+for i in range(0,5):
+      print(f'{i} 번째 : {abs((1-y_predict[i])*100)}의 확률로 남자')
 # '''
 
 # Conv2d
@@ -94,4 +98,12 @@ print('y_predict :', y_predict)
 
 # loss :  0.602618932723999
 # acc :  0.6928499341011047
+
+'''
+0 번째 : [75.04062]의 확률로 남자
+1 번째 : [25.814837]의 확률로 남자
+2 번째 : [24.355686]의 확률로 남자
+3 번째 : [97.525116]의 확률로 남자
+4 번째 : [62.31045]의 확률로 남자
+'''
 # 0.7까지 올리기
