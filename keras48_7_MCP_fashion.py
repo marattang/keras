@@ -86,9 +86,9 @@ model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accur
 es = EarlyStopping(mode='min', monitor='val_loss', patience=5)
 cp = ModelCheckpoint(monitor='val_accuracy', mode='max', filepath='./_save/ModelCheckPoint/keras48_7_MCP.hdf', save_best_only=True)
 start = time.time()
-# model.fit(x_train, y_train, epochs=500, batch_size=512, validation_split=0.05, callbacks=[es, cp])
+model.fit(x_train, y_train, epochs=500, batch_size=512, validation_split=0.05, callbacks=[es, cp])
 # model =load_model('./_save/ModelCheckPoint/keras48_7_model.h5')
-model = load_model('./_save/ModelCheckPoint/keras48_7_MCP.hdf')
+# model = load_model('./_save/ModelCheckPoint/keras48_7_MCP.hdf')
 end = time.time() - start
 
 # model.save('./_save/ModelCheckPoint/keras48_7_model.h5')
