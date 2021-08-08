@@ -44,7 +44,7 @@ x_data = train_datagen.flow(
 
 print(type(x_data)) # <class 'tensorflow.python.keras.preprocessing.image.NumpyArrayIterator'>
                     # -> <class 'tuple'> (next)
-print(type(x_data[0])) # <class 'tuple'> 
+print(type(x_data[0])) # <class 'tuple'> T
                         # -> # <class 'numpy.ndarray'> (next)
 print(x_data[0][0].shape)
                        # (28, 28, 1)    
