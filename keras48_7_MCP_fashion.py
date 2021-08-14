@@ -10,7 +10,6 @@ import time
 from tensorflow.python.keras.layers.core import Dropout
 
 # 1. 데이터
-# 이미 테스트데이터와 트레인 데이터가 분리되어있다.
 (x_train, y_train), (x_test, y_test) = fashion_mnist.load_data()
 
 # print(x_train.shape, y_train.shape) (60000, 28, 28) (60000,) 흑백데이터이기 때문에 3차원
