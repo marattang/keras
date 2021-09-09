@@ -1,5 +1,5 @@
 from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Dense, Input
+from tensorflow.keras.layers import Dense, Input, concatenate, Concatenate
 import numpy as np
 from tensorflow.keras.layers import concatenate, Concatenate
 from sklearn.model_selection import train_test_split

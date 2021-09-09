@@ -7,6 +7,8 @@
 # 3. dropout
 #  - 전체적으로 연결되어있는 레이어의 구성을 Fully Connected layer라고 하는데, 
 # 완벽한 모델 구성import numpy as np
+# 4. feature engineering
+# 
 import matplotlib.pyplot as plt
 from tensorflow.keras.datasets import cifar100
 from tensorflow.keras.models import Sequential

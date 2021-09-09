@@ -26,7 +26,7 @@ y = encoder.fit_transform(y)
 y = np.c_[y.toarray()]
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.7, shuffle=True, random_state=2)
 
-scaler = PowerTransformer()
+scaler = QuantileTransformer()
 scaler.fit(x_train)
 x_train = scaler.transform(x_train)
 x_test = scaler.transform(x_test)
@@ -34,29 +34,21 @@ x_test = scaler.transform(x_test)
 print('&&&&&', np.unique(y))
 # # # 
 model = Sequential()
-model.add(Dense(4200, input_shape=(11,), activation='relu'))
+model.add(Dense(256, input_shape=(11,), activation='relu'))
 model.add(Dropout(0.5))
-model.add(Dense(2500, activation='relu'))
+model.add(Dense(128, activation='relu'))
 model.add(Dropout(0.2))
-model.add(Dense(1400, activation='relu'))
-model.add(Dropout(0.2))
-model.add(Dense(1200, activation='relu'))
-model.add(Dropout(0.2))
-model.add(Dense(800, activation='relu'))
+model.add(Dense(64, activation='relu'))
 model.add(Dropout(0.1))
-model.add(Dense(500, activation='relu'))
-model.add(Dropout(0.1))
-model.add(Dense(300, activation='relu'))
-model.add(Dense(200, activation='relu'))
-model.add(Dense(100, activation='relu'))
 model.add(Dense(75, activation='relu'))
 model.add(Dense(30, activation='relu'))
+model.add(Dense(14, activation='relu'))
 model.add(Dense(7, activation='softmax'))
 
 # 다중분류
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-
-model.fit(x_train, y_train, epochs=100, batch_size=500, validation_split=0.05)
+es = EarlyStopping(monitor='val_loss', mode='auto', patience=10)
+model.fit(x_train, y_train, epochs=5000, batch_size=64, validation_split=0.02, callbacks=[es])
 
 # 모델링 하고
 loss = model.evaluate(x_test, y_test)
@@ -65,3 +57,5 @@ print('accuracy : ', loss[1])
 # 0.8 이상 완성
 y_predict = model.predict(x_test)
 print(y_predict)
+
+# 
