@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 #1. 데이터
-x = np.array([1,2,3,4,5])
+x = np.array([1,2,3,4,5])  
 y = np.array([1,2,4,3,5])  
 
 #2. 모델 구성
